@@ -9,11 +9,15 @@ class Collection {
 	public function parseFromCSVData($csv){
 		// this will fail for quoted multiline values in CSV, update to http://csv.thephpleague.com/ sometime?
 		$lines = explode(PHP_EOL, $csv);
-		//TODO do something with this ... 
-		$headerdata = array_shift($lines);
+		$headerdata = str_getcsv(array_shift($lines));
 		$this->collectiondata = array();
 		foreach($lines as $line){
-			$this->collectiondata[] = str_getcsv($line);
+			$row = array();
+			$rowvalues = str_getcsv($line);
+			for($i=0;$i<count($headerdata);$i++){
+				$row[$headerdata[$i]] = $rowvalues[$i];
+			}
+			$this->collectiondata[] = $row;
 		}
 		
 	}

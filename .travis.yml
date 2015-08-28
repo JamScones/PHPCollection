@@ -4,3 +4,4 @@ php:
   - 5.6
 
 script: phpunit --bootstrap src/autoload.php tests/*.php
+

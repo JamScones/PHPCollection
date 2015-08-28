@@ -15,6 +15,7 @@ print_r($headerdata);
 		foreach($lines as $line){
 			$row = array();
 			$rowvalues = str_getcsv($line);
+print_r($rowvalues);
 			for($i=0;$i<count($headerdata);$i++){
 				$row[$headerdata[$i]] = $rowvalues[$i];
 			}

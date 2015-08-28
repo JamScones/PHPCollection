@@ -2,6 +2,7 @@
 
 class Collection {
 	private $collectiondata;
+	public static $image_columns;
 	public function __construct(){
 		
 	}
@@ -15,7 +16,13 @@ class Collection {
 			$row = array();
 			$rowvalues = str_getcsv($line);
 			for($i=0;$i<count($headerdata);$i++){
-				$row[$headerdata[$i]] = $rowvalues[$i];
+				if(in_array($headerdata[$i],self::$image_columns)){
+					$files = explode(";",$rowvalues[$i]);
+					$row[$headerdata[$i]] = $files;
+					
+				}else{
+					$row[$headerdata[$i]] = $rowvalues[$i];
+				}
 			}
 			$this->collectiondata[] = $row;
 		}

@@ -1,6 +1,6 @@
 <?php
 
 $collection_file_path = "../private/collection.csv";
-$image_columns = ["Files"];
+Collection::$image_columns = ["Files"];
 
 ?>

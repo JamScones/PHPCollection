@@ -28,7 +28,6 @@ EOF;
 		$testdata = <<<EOF
 Number,Type,Description,Notes,Files
 1,Drawing,A drawing of a fish, fishy fishy fishy, /nonexistent/path.jpg;/another/badpath.jpg
-2,Drawing,A drawing of a dog, dogy dogy, /nonexistent/path2.jpg
 EOF;
 		$collection = new Collection();
 		$collection->parseFromCSVData($testdata);

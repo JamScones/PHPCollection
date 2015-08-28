@@ -16,6 +16,10 @@ class Collection {
 		
 	}
 
+	public function getEntries(){
+		return $collectiondata;
+	}
+
 
 }
 

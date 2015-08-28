@@ -33,6 +33,7 @@ EOF;
 		$collection->parseFromCSVData($testdata);
 		$entries = $collection->getEntries();
 		$this->assertEquals(2,count($entries[0]["Files"]));
+		$this->assertInstanceOf("Image",$entries[0]["Files"][0]);
 	}
 
 }

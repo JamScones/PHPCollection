@@ -2,7 +2,7 @@
 
 class CollectionTest extends PHPUnit_Framework_TestCase {
 
-	public function TestCollectionList(){
+	public function testLoadedDataGetsRightNumberOfRows(){
 		$testdata = <<<EOF
 Number,Type,Description,Notes,Files
 1,Drawing,A drawing of a fish, fishy fishy fishy, /nonexistent/path.jpg

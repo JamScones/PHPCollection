@@ -18,7 +18,11 @@ class Collection {
 			for($i=0;$i<count($headerdata);$i++){
 				if(in_array($headerdata[$i],self::$image_columns)){
 					$files = explode(";",$rowvalues[$i]);
-					$row[$headerdata[$i]] = $files;
+					foreach($files as $file){
+						$image = new Image();
+						$image->setSourcePath($file);
+						$row[$headerdata[$i]][] = $image;
+					}
 					
 				}else{
 					$row[$headerdata[$i]] = $rowvalues[$i];

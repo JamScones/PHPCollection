@@ -12,6 +12,10 @@ class Image {
 	public function getMetadata(){
 		return array("path"=>$this->source);
 	}
+	public function getImage(){
+	}
+	public function clearCache(){
+	}
 }
 
 ?>

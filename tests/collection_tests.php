@@ -42,33 +42,43 @@ EOF;
 	}
 	public function testImageReturnImage(){
 		$image = new Image();
-		$image->setSourcePath("tests/testimage.jpg");
+		$image->setSourcePath("tests/test.jpg");
 		$data = $image->getImage();
-		$this->assertEquals("imagedata",$data);
-	}
-	public function testImageClearCacheOnUncachedImage(){
-		$image = new Image();
-		$image->setSourcePath("/this/does/not/exist.jpg");
-		$image->clearCache();
+		$testdata = file_get_contents("tests/test.jpg");
+		$this->assertEquals($testdata,$data);
 	}
 	public function testImageCacheGeneration(){
 		$image = new Image();
+		$image->clearCache();
 		$image->setSourcePath("tests/test.jpg");
-		$image->getImage(128);
+		$foo = $image->getImage(128);
 		$metadata = $image->getMetadata();
-		$this->assertEquals(1,count($metadata["cache"]));
+		$this->assertEquals(true,file_exists(Image::$cache_directory));
+		$this->assertEquals(3,count(scandir(Image::$cache_directory)));
 	}
-	public function testImageCacheClear(){
+	public function testCacheClearSafety(){
+		$tmp = Image::$cache_directory;
+		Image::$cache_directory="/";
+		$image = new Image();
+		$bang = false;
+		try{
+			$image->clearCache();
+		}catch(Exception $e){
+			$bang=true;
+		}
+		Image::$cache_directory = $tmp;
+		$this->assertEquals(true,$bang);
+	}
+	public function testImageClearCache(){
 		$image = new Image();
 		$image->setSourcePath("tests/test.jpg");
 		$image->getImage(128);
-		$metadata = $image->getMetadata();
-		$this->assertEquals(1,count($metadata["cache"]));
+		$this->assertEquals(true,file_exists(Image::$cache_directory));
+		$this->assertEquals(3,count(scandir(Image::$cache_directory)));
 		$image->clearCache();
-		$metadata = $image->getMetadata();
-		$this->assertEquals(0,count($metadata["cache"]));
+		$this->assertEquals(false,file_exists(Image::$cache_directory));
+		$this->assertEquals(false,file_exists(Image::$cache_hints_file));
 	}
-
 }
 
 ?>

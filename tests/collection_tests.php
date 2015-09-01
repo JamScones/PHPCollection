@@ -79,6 +79,9 @@ EOF;
 		$this->assertEquals(false,file_exists(Image::$cache_directory));
 		$this->assertEquals(false,file_exists(Image::$cache_hints_file));
 	}
+	public function testImageCacheRetrivalWorks(){
+		$this->assertEquals("Have you written this","no");
+	}
 }
 
 ?>

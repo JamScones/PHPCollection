@@ -51,7 +51,7 @@ class Image {
 			$this->cacheImageData($this->source,$thumbdata,$newwidth);
 			return $thumbdata;
 		}else{
-			return $this->getCacheEntry($cachedimage,$newwidth);
+			return $cachedimage
 		}
 		
 	}

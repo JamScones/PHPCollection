@@ -13,6 +13,9 @@ class Collection {
 		$headerdata = str_getcsv(array_shift($lines));
 		$this->collectiondata = array();
 		foreach($lines as $line){
+			if($line=="" || $line==null){
+				continue;
+			}
 			$row = array();
 			$rowvalues = str_getcsv($line);
 			for($i=0;$i<count($headerdata);$i++){

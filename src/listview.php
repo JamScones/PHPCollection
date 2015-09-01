@@ -7,8 +7,10 @@
 <?php
 	require dirname(__FILE__)."/autoload.php";
 	$collection = new Collection();
-	$collection->parseFromCSVData(file_get_contents(dirname(__FILE__)."/../private/collection.csv"));
-	foreach($collection->getEntries() as $entry){
+	$collection->parseFromCSVData(file_get_contents(dirname(__FILE__)."/".$collection_file_path));
+	$entries = $collection->getEntries();
+	for($i=0;$i<count($entries);$i++){
+		$entry = $entries[$i];
 ?>
 		<div>
 			<div>
@@ -16,7 +18,7 @@
 				<p><?php print($entry["Description"]); ?></p>	
 			</div>
 			<div>
-				<img src="imageview.php?file=<?php print($entry["Files"][0]->getMetadata()["path"]);?>&width=128" />
+				<img src="imageview.php?entry=<?php print($i);?>&image=0&width=128" />
 			</div>
 		</div>
 <?php

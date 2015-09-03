@@ -18,7 +18,7 @@
 				<p><?php print($entry["Description"]); ?></p>	
 			</div>
 			<div>
-				<img src="imageview.php?entry=<?php print($i);?>&image=0&width=128" />
+				<a href="itemdetails.php?entry=<?php print($i);?>"><img src="imageview.php?entry=<?php print($i);?>&image=0&width=128" /></a>
 			</div>
 		</div>
 <?php
